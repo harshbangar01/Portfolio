@@ -519,8 +519,8 @@ class PortfolioApp {
                 description: 'A modern portfolio website with 3D animations and smooth interactions',
                 image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop',
                 technologies: ['HTML', 'CSS', 'JavaScript', 'Three.js'],
-                liveUrl: 'https://harshbangar01.github.io//',
-                githubUrl: 'https://github.com/harshbangar01/',
+                liveUrl: 'https://harshbangar01.github.io/Portfolio/',
+                githubUrl: 'https://github.com/harshbangar01/Portfolio',
                 category: 'web'
             }
         ];
