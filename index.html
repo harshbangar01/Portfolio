@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh - Portfolio</title>
+    <link rel="icon" href="./portfolio logo.png">
+    <meta name="description" content="Professional portfolio of Harsh Bangar, a full-stack web developer specializing in React, Node.js, and modern web technologies.">
+    
+    <!-- CDN Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loader" class="fixed inset-0 bg-gray-900 z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-4"></div>
+            <p class="text-cyan-400 font-mono">Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div id="progress-indicator" class="fixed top-0 left-0 w-full h-1 bg-gray-800 z-40">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-transparent">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold gradient-text"><img src="./portfolio logo.png" alt="Harsh Bangar" class="h-10 w-10 rounded-full object-cover"></div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Skills</a>
+                    <a href="#services" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Projects</a>
+                    <a href="#experience" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Experience</a>
+                    <a href="#blog" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Blog</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors duration-300">Contact</a>
+                    <button id="theme-toggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors duration-300">
+                        <i class="fas fa-sun text-yellow-400"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors duration-300">
+                        <i class="fas fa-sun text-yellow-400"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" class="text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden mt-4 glass-effect rounded-lg p-4 hidden">
+                <div class="space-y-4">
+                    <a href="#home" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Home</a>
+                    <a href="#about" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a>
+                    <a href="#skills" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Skills</a>
+                    <a href="#services" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a>
+                    <a href="#projects" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Projects</a>
+                    <a href="#experience" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Experience</a>
+                    <a href="#blog" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Blog</a>
+                    <a href="#contact" class="block text-gray-300 hover:text-cyan-400 transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Particle System -->
+        <div id="particles-js" class="absolute inset-0"></div>
+        
+        <!-- 3D Scene -->
+        <div id="three-scene" class="absolute inset-0 pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
+                    <span id="typed-text"></span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    I craft digital experiences that blend creativity with cutting-edge technology
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="cta-button bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="cta-button border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-full font-semibold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-cyan-400 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">About Me</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        I'm a beginner web developer with zero experience but a strong passion for learning and building creative digital experiences. Always eager to grow and take on new challenges.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <p class="text-gray-300 leading-relaxed">
+                            I'm a full-stack developer who thrives on turning complex problems into elegant solutions. 
+                            My journey in web development started with a curiosity about how things work, and it has 
+                            evolved into a passion for creating seamless digital experiences.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
+                            projects, or sharing knowledge with the developer community through writing and speaking.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="px-4 py-2 bg-cyan-400/20 text-cyan-400 rounded-full text-sm">Problem Solver</span>
+                            <span class="px-4 py-2 bg-blue-400/20 text-blue-400 rounded-full text-sm">Team Player</span>
+                            <span class="px-4 py-2 bg-purple-400/20 text-purple-400 rounded-full text-sm">Lifelong Learner</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="floating-card glass-effect p-8 rounded-2xl">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-cyan-400 mb-2">0</div>
+                                    <div class="text-gray-300">Years Experience</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-blue-400 mb-2">20+</div>
+                                    <div class="text-gray-300">Projects Completed</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-purple-400 mb-2">2+</div>
+                                    <div class="text-gray-300">Happy Clients</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-green-400 mb-2">24/7</div>
+                                    <div class="text-gray-300">Support</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Technical Skills</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        A comprehensive toolkit for building modern web applications
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Frontend Skills -->
+                    <div class="glass-effect p-6 rounded-xl hover:shadow-xl transition-all duration-300">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-code text-4xl text-cyan-400 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Frontend</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>React.js</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%; background: linear-gradient(90deg, #06b6d4, #3b82f6);"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>Three.js</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%; background: linear-gradient(90deg, #3b82f6, #8b5cf6);"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>JavaScript</span>
+                                    <span>86%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 86%; background: linear-gradient(90deg, #8b5cf6, #ec4899);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend Skills -->
+                    <div class="glass-effect p-6 rounded-xl hover:shadow-xl transition-all duration-300">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-server text-4xl text-blue-400 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Backend</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>Node.js</span>
+                                    <span>62%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 62%; background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>Express</span>
+                                    <span>78%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 78%; background: linear-gradient(90deg, #f59e0b, #10b981);"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>MongoDB</span>
+                                    <span>65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 65%; background: linear-gradient(90deg, #3b82f6, #f59e0b);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Others -->
+                    <div class="glass-effect p-6 rounded-xl hover:shadow-xl transition-all duration-300">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-tools text-4xl text-purple-400 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Tools & Others</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>Git</span>
+                                    <span>93%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 93%; background: linear-gradient(90deg, #ef4444, #f59e0b);"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>Docker</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%; background: linear-gradient(90deg, #06b6d4, #3b82f6);"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span>AWS</span>
+                                    <span>78%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 78%; background: linear-gradient(90deg, #f59e0b, #ef4444);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Services</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        Comprehensive solutions for your digital needs
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card glass-effect p-8 rounded-xl hover:shadow-xl transition-all duration-300">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-laptop-code text-4xl text-cyan-400 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Web Development</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">
+                            Custom web applications built with modern technologies and best practices.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>Responsive Design</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>Performance Optimization</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>SEO Friendly</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card glass-effect p-8 rounded-xl hover:shadow-xl transition-all duration-300">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-mobile-alt text-4xl text-blue-400 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Mobile Development</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">
+                            Native and cross-platform mobile applications for iOS and Android.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>React Native</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>Flutter</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>PWA Development</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card glass-effect p-8 rounded-xl hover:shadow-xl transition-all duration-300">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-cloud text-4xl text-purple-400 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Cloud Solutions</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">
+                            Scalable cloud infrastructure and deployment solutions.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>AWS & Azure</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>DevOps</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i>CI/CD Pipeline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Featured Projects</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        A showcase of my recent work and creative solutions
+                    </p>
+                </div>
+                
+                <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Projects will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Experience</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        My professional journey and achievements
+                    </p>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-500"></div>
+                    
+                    <div class="space-y-12">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0">
+                                <div class="glass-effect p-6 rounded-xl">
+                                    <div class="text-cyan-400 font-semibold mb-2">2025 - Present</div>
+                                    <h3 class="text-xl font-bold mb-2">Junior Full Stack Developer</h3>
+                                    <p class="text-gray-300 mb-4">TechCorp Solutions</p>
+                                    <p class="text-gray-300 text-sm">
+                                        Leading development of enterprise-level applications using React, Node.js, and JS.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="w-4 h-4 bg-cyan-400 rounded-full mx-auto"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row-reverse items-center">
+                            <div class="md:w-1/2 md:pl-8 mb-4 md:mb-0">
+                                <div class="glass-effect p-6 rounded-xl">
+                                    <div class="text-blue-400 font-semibold mb-2">2019 - 2021</div>
+                                    <h3 class="text-xl font-bold mb-2">Full Stack Developer</h3>
+                                    <p class="text-gray-300 mb-4">StartupHub Inc.</p>
+                                    <p class="text-gray-300 text-sm">
+                                        Built scalable web applications and APIs serving thousands of users daily.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="w-4 h-4 bg-blue-400 rounded-full mx-auto"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0">
+                                <div class="glass-effect p-6 rounded-xl">
+                                    <div class="text-purple-400 font-semibold mb-2">2017 - 2019</div>
+                                    <h3 class="text-xl font-bold mb-2">Frontend Developer</h3>
+                                    <p class="text-gray-300 mb-4">WebDesign Pro</p>
+                                    <p class="text-gray-300 text-sm">
+                                        Specialized in creating responsive and interactive user interfaces.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="w-4 h-4 bg-purple-400 rounded-full mx-auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Latest Blog Posts</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        Insights and thoughts on web development and technology
+                    </p>
+                </div>
+                
+                <div id="blog-posts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog posts will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Get In Touch</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        Ready to start your next project? Let's work together!
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-cyan-400/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Email</h3>
+                                <p class="text-gray-300">harshbang098@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-400/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Phone</h3>
+                                <p class="text-gray-300">+918962583003</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-400/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Location</h3>
+                                <p class="text-gray-300">Indore, Madhya Pradesh</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors duration-300">
+                        </div>
+                        <div>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors duration-300">
+                        </div>
+                        <div>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors duration-300">
+                        </div>
+                        <div>
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required 
+                                      class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-400 transition-colors duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Harsh Bangar</h3>
+                        <p class="text-gray-300 mb-4">Full Stack Developer creating digital experiences</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#about" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                            <li><a href="#projects" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Projects</a></li>
+                            <li><a href="#services" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Services</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><span class="text-gray-400">Web Development</span></li>
+                            <li><span class="text-gray-400">Mobile Apps</span></li>
+                            <li><span class="text-gray-400">Cloud Solutions</span></li>
+                            <li><span class="text-gray-400">Consulting</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li>harshbang098@gmail.com</li>
+                            <li>+918962583003</li>
+                            <li>Indore, Madhya Pradesh</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                    <p class="text-gray-400">&copy; 2025 Harsh Bangar. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
