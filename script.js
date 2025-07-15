@@ -535,7 +535,7 @@ class PortfolioApp {
                 title: 'Modern Web Development Best Practices',
                 excerpt: 'Explore the latest trends and best practices in web development for 2024',
                 image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
-                publishedAt: '2024-01-15',
+                publishedAt: '2024-06-15',
                 readTime: '5 min read',
                 tags: ['Web Development', 'JavaScript', 'React']
             },
@@ -544,7 +544,7 @@ class PortfolioApp {
                 title: 'Building Scalable APIs with Node.js',
                 excerpt: 'Learn how to design and build APIs that can handle millions of requests',
                 image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop',
-                publishedAt: '2024-01-10',
+                publishedAt: '2025-02-21',
                 readTime: '8 min read',
                 tags: ['Node.js', 'API', 'Backend']
             },
@@ -553,7 +553,7 @@ class PortfolioApp {
                 title: 'The Future of Frontend Development',
                 excerpt: 'Discover emerging technologies and frameworks shaping the future of frontend',
                 image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
-                publishedAt: '2024-01-05',
+                publishedAt: '2025-04-05',
                 readTime: '6 min read',
                 tags: ['Frontend', 'React', 'Vue', 'Angular']
             }
