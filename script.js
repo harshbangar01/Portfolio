@@ -519,7 +519,7 @@ class PortfolioApp {
                 description: 'A real time multiplayer chess game with online matchmaking',
                 image: 'https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpxsIApe.png',
                 technologies: ['Ejs', 'Socket.io', 'Express', 'Node.js'],
-                liveUrl: 'https://harshbangar01.github.io/Portfolio/',
+                liveUrl: 'https://chess-io-1.onrender.com/',
                 githubUrl: 'https://github.com/harshbangar01/Chess.io',
                 category: 'Game'
             }
