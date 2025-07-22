@@ -468,7 +468,7 @@ class PortfolioApp {
                 title: 'Collage Management Platform',
                 description: 'A full-stack collage management solution with React, Node.js, and MongoDB',
                 image: 'https://cdn.prod.website-files.com/65fabbf8f7f7323a634a308c/66c478f331c8f9c5995f02ba_Group%201171275868.png',
-                technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+                technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
                 liveUrl: 'https://harshbangar01.github.io/collegeMG/',
                 githubUrl: 'https://github.com/harshbangar01/collegeMG',
                 category: 'web'
@@ -491,7 +491,7 @@ class PortfolioApp {
                 technologies: ['React', ' Vite', 'Stripe', 'Tailwind'],
                 liveUrl: 'https://harshbangar01.github.io/calculator/',
                 githubUrl: 'https://github.com/harshbangar01/calculator',
-                category: 'web'
+                category: 'App'
             },
             {
                 id: 4,
@@ -501,7 +501,7 @@ class PortfolioApp {
                 technologies: ['React', 'Three.js', ' Gsap', 'Redux'],
                 liveUrl: 'https://harshbangar01.github.io/3D-model/',
                 githubUrl: 'https://github.com/harshbangar01/3D-model',
-                category: 'mobile'
+                category: 'Web'
             },
             {
                 id: 5,
@@ -511,17 +511,17 @@ class PortfolioApp {
                 technologies: ['React', 'TailwindCSS', 'OpenAI API'],
                 liveUrl: 'https://harshbangar01.github.io/Gemini/',
                 githubUrl: 'https://github.com/harshbangar01/Gemini',
-                category: 'ai'
+                category: 'Ai'
             },
             {
                 id: 6,
-                title: 'Portfolio Website',
-                description: 'A modern portfolio website with 3D animations and smooth interactions',
-                image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop',
-                technologies: ['HTML', 'CSS', 'JavaScript', 'Three.js'],
+                title: 'Chess Game',
+                description: 'A real time multiplayer chess game with online matchmaking',
+                image: 'https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpxsIApe.png',
+                technologies: ['Ejs', 'Socket.io', 'Express', 'Node.js'],
                 liveUrl: 'https://harshbangar01.github.io/Portfolio/',
-                githubUrl: 'https://github.com/harshbangar01/Portfolio',
-                category: 'web'
+                githubUrl: 'https://github.com/harshbangar01/Chess.io',
+                category: 'Game'
             }
         ];
 
