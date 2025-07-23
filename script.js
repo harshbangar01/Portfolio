@@ -815,3 +815,10 @@ const Utils = {
 
 // Export for use in other modules
 window.Utils = Utils;
+
+const target = document.getElementById("text-to-copy");
+
+target.addEventListener("copy", function(e) {
+  e.preventDefault();
+  e.clipboardData.setData("text/plain", " 🖕 and not allowed ");
+});
